@@ -44,10 +44,12 @@ kvm_get_id_from_name(
         domainid = VMI_INVALID_DOMID;
     } else {
 
-        domainid = (uint64_t) kvm->libvirt.virDomainGetID(dom);
-        if (domainid == (uint64_t)-1) {
+        unsigned int vir_domid = kvm->libvirt.virDomainGetID(dom);
+        if (vir_domid == (unsigned int)-1) {
             dbprint(VMI_DEBUG_KVM, "--requested kvm domain may not be running\n");
             domainid = VMI_INVALID_DOMID;
+        } else {
+            domainid = (uint64_t) vir_domid;
         }
     }
 
