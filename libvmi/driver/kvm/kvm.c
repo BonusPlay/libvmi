@@ -307,9 +307,9 @@ static int handshake_cb(
     char start_date[64];
     const char *format = "%H:%M:%S - %a %b %d %Y";
     time_t starttime = (time_t) qemu->start_time;
-    struct tm *tm = NULL;
-    tm = localtime(&starttime);
-    if (strftime(start_date, sizeof(start_date), format, tm) <= 0) {
+    struct tm tm = {0};
+    localtime_r(&starttime, &tm);
+    if (strftime(start_date, sizeof(start_date), format, &tm) <= 0) {
         errprint("Failed to convert time to string\n");
     } else {
         dbprint(VMI_DEBUG_KVM, "--    VM start time: %s\n", start_date);
