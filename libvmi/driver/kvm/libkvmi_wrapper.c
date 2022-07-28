@@ -42,7 +42,9 @@ static status_t sanity_check(kvm_instance_t *kvm)
             !w->kvmi_reply_event || !w->kvmi_pop_event || !w->kvmi_wait_event ||
             !w->kvmi_set_log_cb || !w->kvmi_get_maximum_gfn ||
             !w->kvmi_spp_support || !w->kvmi_ve_support ||
-            !w->kvmi_vmfunc_support || !w->kvmi_eptp_support || !w->kvmi_get_pending_events) {
+            !w->kvmi_vmfunc_support || !w->kvmi_eptp_support ||
+            !w->kvmi_switch_ept_view || !w->kvmi_get_ept_view ||
+            !w->kvmi_get_pending_events || !w->kvmi_change_gfn) {
         dbprint(VMI_DEBUG_KVM, "--failed to find the required functions in libkvmi\n");
         return VMI_FAILURE;
     }
@@ -98,7 +100,10 @@ status_t create_libkvmi_wrapper(struct kvm_instance *kvm)
     wrapper->kvmi_ve_support = dlsym(wrapper->handle, "kvmi_ve_support");
     wrapper->kvmi_vmfunc_support = dlsym(wrapper->handle, "kvmi_vmfunc_support");
     wrapper->kvmi_eptp_support = dlsym(wrapper->handle, "kvmi_eptp_support");
+    wrapper->kvmi_switch_ept_view = dlsym(wrapper->handle, "kvmi_switch_ept_view");
+    wrapper->kvmi_get_ept_view = dlsym(wrapper->handle, "kvmi_get_ept_view");
     wrapper->kvmi_get_pending_events = dlsym(wrapper->handle, "kvmi_get_pending_events");
+    wrapper->kvmi_change_gfn = dlsym(wrapper->handle, "kvmi_change_gfn");
 
     status_t ret = sanity_check(kvm);
     if ( ret != VMI_SUCCESS ) {

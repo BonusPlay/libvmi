@@ -23,12 +23,12 @@
 #include "private.h"
 #include "driver/driver_wrapper.h"
 
-status_t vmi_slat_get_domain_state (vmi_instance_t vmi, bool *state)
+status_t vmi_slat_state (vmi_instance_t vmi, bool *state)
 {
     return driver_slat_get_domain_state (vmi, state);
 }
 
-status_t vmi_slat_set_domain_state (vmi_instance_t vmi, bool state)
+status_t vmi_slat_control (vmi_instance_t vmi, bool state)
 {
     return driver_slat_set_domain_state (vmi, state);
 }
