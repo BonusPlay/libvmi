@@ -13,6 +13,7 @@ libvmi-0.15.so libvmi #MINVER#
  tmp_domain_name@Base 0.15
  tmp_entry@Base 0.15
  tmp_str@Base 0.15
+ vmi_alloc_gfn@Base 0.15
  vmi_are_events_pending@Base 0.15
  vmi_clear_event@Base 0.15
  vmi_convert_str_encoding@Base 0.15
@@ -21,6 +22,7 @@ libvmi-0.15.so libvmi #MINVER#
  vmi_event_listener_required@Base 0.15
  vmi_events_listen@Base 0.15
  vmi_events_version@Base 0.15
+ vmi_free_gfn@Base 0.15
  vmi_free_unicode_str@Base 0.15
  vmi_get_access_mode@Base 0.15
  vmi_get_address_width@Base 0.15

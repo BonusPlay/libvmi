@@ -202,6 +202,12 @@ typedef struct driver_interface {
         uint16_t slat_idx,
         addr_t old_gfn,
         addr_t new_gfn);
+    status_t (*alloc_gfn_ptr)(
+        vmi_instance_t vmi,
+        uint64_t gfn);
+    status_t (*free_gfn_ptr)(
+        vmi_instance_t vmi,
+        uint64_t gfn);
     status_t (*set_access_required_ptr)(
         vmi_instance_t vmi,
         bool required);

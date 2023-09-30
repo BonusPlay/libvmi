@@ -1079,3 +1079,25 @@ kvm_resume_vm(
 
     return VMI_SUCCESS;
 }
+
+status_t kvm_alloc_gfn(
+    vmi_instance_t vmi,
+    uint64_t gfn)
+{
+    kvm_instance_t *kvm = kvm_get_instance(vmi);
+    if (kvm->libkvmi.kvmi_alloc_gfn(kvm->kvmi_dom, gfn) < 0) {
+        return VMI_FAILURE;
+    }
+    return VMI_SUCCESS;
+}
+
+status_t kvm_free_gfn(
+    vmi_instance_t vmi,
+    uint64_t gfn)
+{
+    kvm_instance_t *kvm = kvm_get_instance(vmi);
+    if (kvm->libkvmi.kvmi_free_gfn(kvm->kvmi_dom, gfn) < 0) {
+        return VMI_FAILURE;
+    }
+    return VMI_SUCCESS;
+}

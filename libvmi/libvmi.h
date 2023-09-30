@@ -2721,6 +2721,30 @@ status_t vmi_disk_is_bootable(
     const char *device_id,
     bool *bootable) NOEXCEPT;
 
+/**
+* Only for KVM-based VMs.
+* Allocates a new gfn.
+*
+* @param[in] vmi LibVMI instance
+* @param[in] gfn gfn to allocate
+* @return VMI_SUCCESS or VMI_FAILURE
+*/
+status_t vmi_alloc_gfn (
+    vmi_instance_t vmi,
+    uint64_t gfn) NOEXCEPT;
+
+/**
+* Only for KVM-based VMs.
+* Frees a new gfn.
+*
+* @param[in] vmi LibVMI instance
+* @param[in] gfn gfn to free
+* @return VMI_SUCCESS or VMI_FAILURE
+*/
+status_t vmi_free_gfn (
+    vmi_instance_t vmi,
+    uint64_t gfn) NOEXCEPT;
+
 #pragma GCC visibility pop
 
 #ifdef __cplusplus
