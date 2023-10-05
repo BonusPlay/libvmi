@@ -763,7 +763,7 @@ driver_set_access_listener_required(
 {
 #ifdef ENABLE_SAFETY_CHECKS
     if (!vmi->driver.initialized || !vmi->driver.set_access_required_ptr) {
-        dbprint (VMI_DEBUG_DRIVER, "WARNING: driver_slat_change_gfn function not implemented.\n");
+        dbprint (VMI_DEBUG_DRIVER, "WARNING: driver_set_access_listener_required function not implemented.\n");
         return VMI_FAILURE;
     }
 #endif
