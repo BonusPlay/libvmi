@@ -106,6 +106,7 @@ status_t create_libkvmi_wrapper(struct kvm_instance *kvm)
     wrapper->kvmi_change_gfn = dlsym(wrapper->handle, "kvmi_change_gfn");
     wrapper->kvmi_alloc_gfn = dlsym(wrapper->handle, "kvmi_alloc_gfn");
     wrapper->kvmi_free_gfn = dlsym(wrapper->handle, "kvmi_free_gfn");
+    wrapper->kvmi_get_next_available_gfn = dlsym(wrapper->handle, "kvmi_get_next_available_gfn");
 
     status_t ret = sanity_check(kvm);
     if ( ret != VMI_SUCCESS ) {

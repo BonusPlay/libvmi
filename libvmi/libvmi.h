@@ -2745,6 +2745,17 @@ status_t vmi_free_gfn (
     vmi_instance_t vmi,
     uint64_t gfn) NOEXCEPT;
 
+/**
+ * Only for KVM-based VMs.
+ * Returns next available gfn for allocation
+ *
+* @param[in] vmi LibVMI instance
+* @param[out] gfn next available gfn
+ */
+status_t vmi_get_next_available_gfn(
+    vmi_instance_t vmi,
+    uint64_t* gfn) NOEXCEPT;
+
 #pragma GCC visibility pop
 
 #ifdef __cplusplus

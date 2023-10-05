@@ -35,6 +35,7 @@ libvmi-0.15.so libvmi #MINVER#
  vmi_get_mem_event@Base 0.15
  vmi_get_memsize@Base 0.15
  vmi_get_name@Base 0.15
+ vmi_get_next_available_gfn@Base 0.15
  vmi_get_num_vcpus@Base 0.15
  vmi_get_offset@Base 0.15
  vmi_get_ostype@Base 0.15

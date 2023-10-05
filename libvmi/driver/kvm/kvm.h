@@ -146,6 +146,10 @@ status_t kvm_free_gfn(
     vmi_instance_t vmi,
     uint64_t gfn
 );
+status_t kvm_get_next_available_gfn(
+    vmi_instance_t vmi,
+    uint64_t* gfn
+);
 
 static inline status_t
 driver_kvm_setup(vmi_instance_t vmi)
@@ -166,6 +170,7 @@ driver_kvm_setup(vmi_instance_t vmi)
     driver.get_memsize_ptr = &kvm_get_memsize;
     driver.alloc_gfn_ptr = &kvm_alloc_gfn;
     driver.free_gfn_ptr = &kvm_free_gfn;
+    driver.get_next_available_gfn_ptr = &kvm_get_next_available_gfn;
 # ifndef ENABLE_KVM_LEGACY
     driver.request_page_fault_ptr = &kvm_request_page_fault;
     driver.get_tsc_info_ptr = &kvm_get_tsc_info;

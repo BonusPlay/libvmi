@@ -208,6 +208,9 @@ typedef struct driver_interface {
     status_t (*free_gfn_ptr)(
         vmi_instance_t vmi,
         uint64_t gfn);
+    status_t (*get_next_available_gfn_ptr)(
+        vmi_instance_t vmi,
+        uint64_t* gfn);
     status_t (*set_access_required_ptr)(
         vmi_instance_t vmi,
         bool required);

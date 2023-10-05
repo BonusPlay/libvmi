@@ -1289,3 +1289,15 @@ status_t vmi_free_gfn (
 
     return driver_free_gfn(vmi, gfn);
 }
+
+status_t vmi_get_next_available_gfn(
+    vmi_instance_t vmi,
+    uint64_t* gfn)
+{
+#ifdef ENABLE_SAFETY_CHECKS
+    if (!vmi)
+        return VMI_FAILURE;
+#endif
+
+    return driver_get_next_available_gfn(vmi, gfn);
+}

@@ -787,6 +787,21 @@ driver_free_gfn (
 }
 
 static inline status_t
+driver_get_next_available_gfn(
+    vmi_instance_t vmi,
+    uint64_t* gfn)
+{
+#ifdef ENABLE_SAFETY_CHECKS
+    if (!vmi->driver.initialized || !vmi->driver.get_next_available_gfn_ptr) {
+        dbprint (VMI_DEBUG_DRIVER, "WARNING: driver_get_next_available_gfn_ptr function not implemented.\n");
+        return VMI_FAILURE;
+    }
+#endif
+
+    return vmi->driver.get_next_available_gfn_ptr (vmi, gfn);
+}
+
+static inline status_t
 driver_set_access_listener_required(
     vmi_instance_t vmi,
     bool required)
