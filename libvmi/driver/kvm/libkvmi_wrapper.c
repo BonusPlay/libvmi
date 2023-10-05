@@ -107,6 +107,8 @@ status_t create_libkvmi_wrapper(struct kvm_instance *kvm)
     wrapper->kvmi_alloc_gfn = dlsym(wrapper->handle, "kvmi_alloc_gfn");
     wrapper->kvmi_free_gfn = dlsym(wrapper->handle, "kvmi_free_gfn");
     wrapper->kvmi_get_next_available_gfn = dlsym(wrapper->handle, "kvmi_get_next_available_gfn");
+    wrapper->kvmi_create_ept_view = dlsym(wrapper->handle, "kvmi_create_ept_view");
+    wrapper->kvmi_destroy_ept_view = dlsym(wrapper->handle, "kvmi_destroy_ept_view");
 
     status_t ret = sanity_check(kvm);
     if ( ret != VMI_SUCCESS ) {

@@ -77,16 +77,50 @@ status_t kvm_slat_control(vmi_instance_t vmi, bool state)
     return VMI_FAILURE;
 }
 
-status_t kvm_create_view(vmi_instance_t UNUSED(vmi), uint16_t *UNUSED(view))
+status_t kvm_create_view(vmi_instance_t vmi, uint16_t *view)
 {
-    // TODO: implement this function as soon as functionality becomes available in kvmi
-    return VMI_FAILURE;
+#ifdef ENABLE_SAFETY_CHECKS
+    if (!vmi) {
+        errprint("%s: invalid vmi handle\n", __func__);
+        return VMI_FAILURE;
+    }
+#endif
+    kvm_instance_t *kvm = kvm_get_instance(vmi);
+#ifdef ENABLE_SAFETY_CHECKS
+    if (!kvm || !kvm->kvmi_dom) {
+        errprint("%s: invalid kvm handle\n", __func__);
+        return VMI_FAILURE;
+    }
+#endif
+
+    if (kvm->libkvmi.kvmi_create_ept_view(kvm->kvmi_dom, 0, view)) {
+        return VMI_FAILURE;
+    }
+
+    return VMI_SUCCESS;
 }
 
-status_t kvm_destroy_view(vmi_instance_t UNUSED(vmi), uint16_t UNUSED(view))
+status_t kvm_destroy_view(vmi_instance_t vmi, uint16_t view)
 {
-    // TODO: implement this function as soon as functionality becomes available in kvmi
-    return VMI_FAILURE;
+#ifdef ENABLE_SAFETY_CHECKS
+    if (!vmi) {
+        errprint("%s: invalid vmi handle\n", __func__);
+        return VMI_FAILURE;
+    }
+#endif
+    kvm_instance_t *kvm = kvm_get_instance(vmi);
+#ifdef ENABLE_SAFETY_CHECKS
+    if (!kvm || !kvm->kvmi_dom) {
+        errprint("%s: invalid kvm handle\n", __func__);
+        return VMI_FAILURE;
+    }
+#endif
+
+    if (kvm->libkvmi.kvmi_destroy_ept_view(kvm->kvmi_dom, 0, view)) {
+        return VMI_FAILURE;
+    }
+
+    return VMI_SUCCESS;
 }
 
 status_t kvm_switch_view(vmi_instance_t vmi, uint16_t view)

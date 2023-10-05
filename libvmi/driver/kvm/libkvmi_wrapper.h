@@ -149,6 +149,13 @@ typedef struct {
     int (*kvmi_get_next_available_gfn)
     (void *dom, uint64_t *gfn);
 
+    int (*kvmi_create_ept_view)
+    (void *dom, unsigned short vcpu, unsigned short *view);
+
+    int (*kvmi_destroy_ept_view)
+    (void *dom, unsigned short vcpu, unsigned short view);
+
+
 } libkvmi_wrapper_t;
 
 status_t create_libkvmi_wrapper(struct kvm_instance *kvm);
