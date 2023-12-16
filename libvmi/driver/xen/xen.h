@@ -189,6 +189,9 @@ status_t xen_disk_is_bootable(
     bool *bootable);
 char *xen_get_bios(
     vmi_instance_t vmi);
+status_t xen_get_next_available_gfn(
+    vmi_instance_t vmi,
+    uint64_t* gfn);
 
 static inline status_t
 driver_xen_setup(vmi_instance_t vmi)
@@ -227,6 +230,7 @@ driver_xen_setup(vmi_instance_t vmi)
     driver.get_disks_ptr = &xen_get_disks;
     driver.disk_is_bootable_ptr = &xen_disk_is_bootable;
     driver.get_bios = &xen_get_bios;
+    driver.get_next_available_gfn_ptr = &xen_get_next_available_gfn;
     vmi->driver = driver;
     return VMI_SUCCESS;
 }

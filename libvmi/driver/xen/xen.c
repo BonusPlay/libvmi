@@ -3132,3 +3132,13 @@ xen_get_bios(
     return bios;
 }
 #endif
+
+status_t
+xen_get_next_available_gfn(
+    vmi_instance_t vmi,
+    uint64_t* gfn)
+{
+    xen_instance_t *xen = xen_get_instance(vmi);
+    errprint("%s NOT IMPLEMENTED\n", __FUNCTION__);
+    return VMI_FAILURE;
+}
